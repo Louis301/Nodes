@@ -1,0 +1,178 @@
+
+--------------------- Теги
+
+Могут интегрироваться в скрипт функцией echo:
+
+echo '<select>';
+for ($i = 1; $i <= 10; $i++) {
+    echo "<option>$i</option>";
+}
+echo '</select>';
+
+Выше представлена реализация выпадающего списка из чисел [1; 10].
+
+Тег pre отображает данные в корректном для отладки виде:
+
+echo '<pre>';
+print_r($data);
+echo '</pre>';
+
+------------------------------ Запуск сервера, общие моменты
+
+<?php  php_code  ?>  - тег даёт понять интерпретатору, какой код надо интерпретировать: HTML or PHP. По умолчанию интерпретируется HTML-код 
+php -S localhost:4000  - запускает локальный сервер на хосте localhost (Port 4000)
+
+XAMPP  - дистрибутив Apache для Линукс. 
+Open Server  - вариант для Windows.
+
+Скрипт формирует html страницу!
+
+------------------------------ Работа с модулями
+
+include 'module.php';  - обработка кода продолжается, если файл module.php не найден
+require 'module.php';  - программа прерывается, если файл module.php не найден
+
+------------------------------ Работа со встроенными функциями
+
+echo "Some text", "<br />"  - выводит текст "Some text" на экран и переводит каретку на следующую строку тегом <br />
+mt_rand(23, 341)   - возвращает случайное число в диапазоне [23, 341]
+unset($var)  - уничтожает переменную
+isset($var)  - предикат, если переменная существует (не null)
+empty($str)  - предикат, определяет, не пустая ли строка
+gettype($var)  - возвращает тип переменной
+is_int($var)  - определяет, целым ли числом является переменная (!функция из множества)
+settype($str, 'bool')  - явное приведение строковой переменной к логическому типу (возвращает 1 приуспешном преобразовании)
+var_dump(var);  - выводит информацию о типе var 
+print_r($data)  - вывод данных для отладки
+
+------------------------------- function 'date'
+<?php
+// Предположим, что текущей датой является 10 марта 2001, 5:16:18 вечера,
+// и мы находимся в часовом поясе Mountain Standard Time (MST)
+
+$today = date("F j, Y, g:i a");                 // March 10, 2001, 5:16 pm
+$today = date("m.d.y");                         // 03.10.01
+$today = date("j, n, Y");                       // 10, 3, 2001
+$today = date("Ymd");                           // 20010310
+$today = date('h-i-s, j-m-y, it is w Day');     // 05-16-18, 10-03-01, 1631 1618 6 Satpm01
+$today = date('\i\t \i\s \t\h\e jS \d\a\y.');   // it is the 10th day.
+$today = date("D M j G:i:s T Y");               // Sat Mar 10 17:16:18 MST 2001
+$today = date('H:m:s \m \i\s\ \m\o\n\t\h');     // 17:03:18 m is month
+$today = date("H:i:s");                         // 17:16:18
+$today = date("Y-m-d H:i:s");                   // 2001-03-10 17:16:18 (формат MySQL DATETIME)
+?>
+
+-------------------------------- Массивы
+
+$array = ['str', true, 7865, false];  - обычный массив
+$data = array('str', true, 7865);  - второй способ объявления
+
+Example of associative array:
+
+$mapArray = [
+	'str' => 34, 
+	true => 27.8, 
+	7865 => [2, 19, 2]
+];  - ассоциативный
+
+Обращение к элементам:
+
+echo $array[2];  - 7865
+echo $map_array['str'];  - 34
+
+$arr[] = 'newElement';  - добавление элемента в конец массива
+
+-------------------------------Функции для работы с массивом
+
+Для конкретики смотреть документацию!
+
+count  - подсчитывает элементы массива по ключу
+
+-------------------------------- Strings
+
+strlen($data);  - возвращает длину строки $data
+
+HEREDOC format:
+
+$text = <<<MY_TEXT
+jrekrjht
+rekkwkeuuiw
+lsekkwl {$someMean}
+MY_TEXT;
+
+Concatanation example 1:
+
+$str1 = "Type of ";
+$str1 = "data is ";
+$data = 3652;
+$result = $str1 . $str2;  # . - conc. operator
+echo $result, gettype(data);
+
+Concatanation example 2:
+
+$str = "word {$number}";
+$str = "word" . $number;
+$str .= 'word';
+
+$data = 'word';  # кавычки одинарные, если данные для подстановки являются строкой
+$res = "ggreh {$data}";  
+
+--------------------------------- Математические функции
+
+round($number, 2);  # 2 - количество знаков после запятой. Округление числа: 467.97865 -> 467.98
+
+ceil($number);  # округляет до следующего целого: 45.98 -> 46
+floor($number); # отбрасывает дробную часть: 4657.786 -> 4657
+
+decbin(int: num) string  # 3 -> "11"
+bindec(string: binNum) int  # "111" -> "11"
+
+--------------------------------- ООП
+
+- Объявление класса содержится в одном файле (заголовочном), а код, исп-щий класс - в другом. Подключается заголовочный файл инструкцией include_once 'file_name.php' или require_once.
+
+Пример класса с сеттерами, геттерами, статическими методами и модификаторами доступа:
+
+class Point
+{
+    private $_x, $_y = 34;  # поля можно инициализировать
+    private static $variable = 14;  
+
+    public function setX($x) { $this->_x = $x; }  # $this-> используется для работы с полями ОБЪЕКТОВ
+    public function setY($y) { $this->_y = $y; }
+    
+    public function getX() { return $this->_x; }
+    public function getY() { return $this->_y; }
+
+    public static function getStaticVar()
+    {
+        return self::$variable;  # self:: используется для работы со статикой
+    }
+}
+
+Пример работы с классом:
+
+$point = new Point();  # init object
+$point->setX("word_word");  # вызов сеттера
+echo $point->getX() . "\n";  # вызов метода объекта point
+echo $point->getY() . "\n";
+echo Point::getStaticVar() . "\n";  # вызов статического метода
+
+--------------------- Цикл foreach
+
+Всегда выводит ЗНАЧЕНИЯ массива (Пример 1)!
+
+Пример 1:
+
+foreach ($data as $item) {
+    echo $item . '<br>';
+}
+
+Пример 2:
+
+foreach ($data as $key => $value) {
+    echo "key: $key, value: $value \n";
+}
+
+Следовательно, $key => $value является элементом ($item).
+

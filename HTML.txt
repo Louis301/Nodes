@@ -1,0 +1,39 @@
+
+---------------------------- Списки
+
+Реализация выпадающего списка из чисел [1; 10].
+
+<select>  // Список
+    <option>first</option>  // 1 значение списка
+    <option>second</option> // 2 значение списка
+    <option>third</option>  // 3 значение списка
+</select>
+
+echo '<select>';
+for ($i = 1; $i <= 10; $i++) 
+{
+    echo "<option>$i</option>";
+}
+echo '</select>';
+
+---------------------------- Ввод значений
+
+Отображение поля ввода и кнопки выгрузки данных:
+
+<form method="get" action="index.php">
+    <input type="text" name="name">
+    <input type="submit" value="click">
+</form>
+
+$data = $_REQUEST['name'];  - вызов введённого значения в php
+
+---------------------------- Таблицы
+
+<table border='2'>  // Таблица с атрибут border=2  (толщина рамки)
+    <tr>  // строка
+        <td>Cell</td>  // столбец
+    </tr>
+    <tr>  // строка
+        <td>Cell</td>  // столбец
+    </tr>
+</table>

@@ -1,10 +1,9 @@
 References to repositories
 -----------------------------
-https://github.com/Louis301/ASC-games.git  
 
 https://github.com/Louis301 - 135gH_62hJ8    - логин/пароль от учётки
 
-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  - token (active 90 days)
+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  - notes (active 90 days)
 
 ===========================================
 
